@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'third.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'fourth.dart';
 
 class SecondPage extends StatefulWidget {
 
   final topic;
   SecondPage({this.topic});
 
-  @override
+  @override 
   _SecondPageState createState() => _SecondPageState();
 }
 
@@ -30,9 +31,11 @@ class _SecondPageState extends State<SecondPage> {
   void getData() async{
     var keyword=widget.topic;
     http.Response response = await http.get('https://newsapi.org/v2/everything?q=$keyword&apiKey=d7fc9ec743d648bc9016c0d17ce57d42');
-    if (response.statusCode == 200) {
-      String data = response.body;
-      var info=jsonDecode(data);
+    String data = response.body;
+    var info=jsonDecode(data);
+    if (response.statusCode == 200 && info['totalResults']!=0) {
+      
+
 
 
       Navigator.push(
@@ -43,7 +46,7 @@ class _SecondPageState extends State<SecondPage> {
       );
     } else {
       print(response.statusCode);
-
+ Navigator.push(context, MaterialPageRoute(builder: (context)=>ForthPage()));
     }
 
   }
