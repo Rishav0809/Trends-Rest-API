@@ -11,7 +11,6 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +79,6 @@ class _FirstPageState extends State<FirstPage> {
           ],
         ),
       ),
-
     );
   }
 }
