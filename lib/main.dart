@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'first.dart';
+import 'zero.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: FirstPage(),
+      home: ZeroPage(),
     );
   }
 }

@@ -1,22 +1,24 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'third.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'fourth.dart';
+import 'first.dart';
 
-class SecondPage extends StatefulWidget {
+var list;
+class ZeroPage extends StatefulWidget {
 
-  final topic;
-  SecondPage({this.topic});
 
-  @override 
-  _SecondPageState createState() => _SecondPageState();
+
+  @override
+  _ZeroPageState createState() => _ZeroPageState();
 }
 
 
 
-class _SecondPageState extends State<SecondPage> {
+class _ZeroPageState extends State<ZeroPage> {
 
 
   @override
@@ -28,24 +30,22 @@ class _SecondPageState extends State<SecondPage> {
   }
 
   void getData() async{
-    var keyword=widget.topic;
-    http.Response response = await http.get('https://newsapi.org/v2/everything?q=$keyword&apiKey=d7fc9ec743d648bc9016c0d17ce57d42');
+    http.Response response = await http.get('https://753ba29dbf0c.ngrok.io');
     String data = response.body;
     var info=jsonDecode(data);
-    if (response.statusCode == 200 && info['totalResults']!=0) {
-      
-
-
-
+    list=info['default']['trendingSearchesDays'][0]['trendingSearches'];
+    if (response.statusCode == 200 && list.length!=0) {
+      print(list[0]["title"]["query"]);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ThirdPage(
-          information: info,
-        )),
+        MaterialPageRoute(builder: (context) => FirstPage(
+          result: info,
+        ),
+        ),
       );
     } else {
       print(response.statusCode);
- Navigator.push(context, MaterialPageRoute(builder: (context)=>ForthPage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>ForthPage()));
     }
 
   }
