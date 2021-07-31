@@ -1,4 +1,4 @@
-# NewsApplication
+# Current Trends
 
 - This flutter application, makes use of the material library to create the User Interface for the mobile application.
 - It also makes use of <a href="https://newsapi.org/">News API</a>, to fetch the top head-lines for a particular keyword, as entered by the user.
